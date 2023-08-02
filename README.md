@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # yatter-backend-go
 
 ## Table of Contents
@@ -134,3 +135,6 @@ DBなど外部モジュールへアクセスし、データの保存・取得・
 // var r *http.Request
 account := auth.AccountOf(r)
 ```
+=======
+# dmm-go
+>>>>>>> origin/main
