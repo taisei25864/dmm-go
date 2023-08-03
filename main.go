@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"net/http"
 	"strconv"
@@ -25,7 +26,10 @@ func serve(ctx context.Context) error {
 	addr := ":" + strconv.Itoa(config.Port())
 	log.Printf("Serve on http://%s", addr)
 
+	fmt.Println("aiueo")
+
 	return http.ListenAndServe(addr, handler.NewRouter(
 		dao.NewAccount(db),
+		dao.NewStatus(db),
 	))
 }
