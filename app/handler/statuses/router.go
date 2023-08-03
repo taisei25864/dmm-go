@@ -13,12 +13,15 @@ type handler struct {
 	sr repository.Status
 }
 
-// Create Handler for `/v1/accounts/`
+// Create Handler for `/v1/statuses/`
 func NewRouter(sr repository.Status, ar repository.Account) http.Handler {
 	r := chi.NewRouter()
 
 	h := &handler{sr}
-	r.Use(auth.Middleware(ar))
-	r.Post("/", h.Create)
+	r.Route("/", func(r chi.Router) {
+		r.Use(auth.Middleware(ar))
+		r.Post("/", h.Create)
+	})
+	r.Get("/{id:[0-9]+}", h.FindStatusByID)
 	return r
 }
